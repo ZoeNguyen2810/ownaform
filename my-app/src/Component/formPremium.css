@@ -1,0 +1,29 @@
+.form-control-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Khoảng cách giữa các nhóm */
+  max-width: 600px; /* Đặt chiều rộng tối đa của form */
+  /* margin: 0 auto; Căn giữa form theo chiều ngang */
+  padding: 20px; /* Khoảng cách xung quanh form */
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+
+  gap: 8px; /* Khoảng cách giữa label và input */
+}
+
+.form-group label {
+  width: 150px; /* Cố định độ rộng để các label thẳng hàng */
+  text-align: right; /* Căn label sang phải */
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+}
+.w350 {
+  width: 350px; /* Cố đ��nh đ�� rộng của các input */
+}
