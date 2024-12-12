@@ -1,12 +1,12 @@
 import React from 'react';
 // import logo from './logo.svg';
 // import './App.css';
-import FormPremium from './Component/formPremium.tsx';
+import FormPremium1 from './Component/formexam.tsx';
 
 function App() {
   return (
     <div className="App">
-      <FormPremium />
+      <FormPremium1 />
 
     </div>
   );

@@ -1,28 +1,63 @@
 .form-control-container {
   display: flex;
   flex-direction: column;
-  gap: 16px; 
-  max-width: 600px; 
-  padding: 20px; 
+  gap: 16px;
+  padding: 20px;
 }
 
 .form-group {
   display: flex;
   align-items: center;
-
-  gap: 8px; 
+  justify-content: space-between; /* Canh đều giữa label và input */
+  margin-bottom: 16px;
 }
 
-.form-group label {
-  width: 150px;
-  text-align: right; 
+.label {
+  width: 150px; /* Độ rộng cố định cho label */
+  text-align: right; /* Căn phải label */
+  font-size: 0.875rem; /* Kích thước nhỏ hơn */
+  color: #333; /* Màu chữ label */
 }
+
+input, select {
+  display: block; /* Đảm bảo input là khối riêng */
+  width: 100%; /* Chiếm toàn bộ chiều rộng của container */
+  max-width: 550px; /* Giới hạn chiều rộng tối đa nếu cần */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* Đảm bảo padding và border không ảnh hưởng đến kích thước */
+}
+
 
 .radio-group {
   display: flex;
   flex-direction: column;
+  gap: 8px;
   margin-top: 8px;
 }
-.w350 {
-  width: 350px; 
+
+form p {
+  color: red; /* Màu đỏ cho thông báo lỗi */
+  font-size: 0.875rem; /* Kích thước nhỏ hơn chữ mặc định */
+  margin-left: 150px; /* Canh lề để phù hợp với label */
+  padding-left: 8px;
+}
+.w450 {
+  width: 450px;
+}
+label+.css-5h82ro-MuiInputBase-root-MuiInput-root {
+  width: 500px;
+}
+.custom-button {
+  background-color: blue !important;
+  color: white !important;
+  width: 150px !important;
+  margin-left: 40% !important;
+}
+.css-1588512-MuiButtonBase-root-MuiButton-root {
+  background-color: blue !important;
+  color: white !important;
+  width: 150px !important;
+  margin-left: 40% !important;
 }
