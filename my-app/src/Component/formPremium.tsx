@@ -53,48 +53,54 @@ function FormPremium() {
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
+    
         const [hour, minute] = formData.openingTime.split(':').map(Number);
-        const [hourClose, minuteClose] = formData.openingTime.split(':').map(Number);
-
-        
-        const primaryContact : Contact = {
-            firstName : formData.firstName,
-            surname : formData.surname,
-            phone : "",
-            mobile : "",
-            email : formData.email,
-            position : formData.position
-        }
-        const centreDetails : CentreDetails = {
-            name : formData.name,
-            purchasingSettlementDate : "",
-            address : formData.address,
-            suburb : formData.suburb,
-            email : formData.centreEmail,
-            phone : formData.centrePhone,
-            state : formData.state,
-            postcode : formData.postcode,
-            goLiveDate : formData.goLiveDate,
-            openingTime : {
-                hour : hour,
-                minute : minute
+        const [hourClose, minuteClose] = formData.closingTime.split(':').map(Number); // Sửa lại closingTime
+    
+        // Chuyển đổi ngày thành định dạng ISO 8601 (YYYY-MM-DD)
+        const goLiveDate = formData.goLiveDate
+            ? new Date(formData.goLiveDate).toISOString().split("T")[0]
+            : ""; // Nếu không có giá trị, để null
+    
+        const primaryContact: Contact = {
+            firstName: formData.firstName,
+            surname: formData.surname,
+            phone: "",
+            mobile: "",
+            email: formData.email,
+            position: formData.position,
+        };
+    
+        const centreDetails: CentreDetails = {
+            name: formData.name,
+            purchasingSettlementDate: "", // Cần thêm logic nếu có giá trị này
+            address: formData.address,
+            suburb: formData.suburb,
+            email: formData.centreEmail,
+            phone: formData.centrePhone,
+            state: formData.state,
+            postcode: formData.postcode,
+            goLiveDate, // Sử dụng giá trị đã chuyển đổi
+            openingTime: {
+                hour: hour,
+                minute: minute,
             },
-            closingTime : {
-                hour : hourClose,
-                minute : minuteClose
+            closingTime: {
+                hour: hourClose,
+                minute: minuteClose,
             },
-            numberOfApprovedPlaces : Number(formData?.numberOfApprovedPlaces),
-            centreType : "",
-        }
-        const applicationForm : ApplicationForm = {
-            primaryContact : primaryContact,
-            centreDetails : [centreDetails],
-            reCaptcha : "123456789"
-        }
-        mutation.mutate(applicationForm)
-
-
+            numberOfApprovedPlaces: Number(formData?.numberOfApprovedPlaces),
+            centreType: "", 
+        };
+    
+        const applicationForm: ApplicationForm = {
+            primaryContact: primaryContact,
+            centreDetails: [centreDetails],
+        };
+    
+        mutation.mutate({ data : applicationForm , reCaptcha : "00-8a38fa73e20bfeee1dbea8d67c477a29-e4d5d5c22f29d0ca-00"});
     };
+    
     return (
         <FormControl className="form-control-container" style={{ marginLeft : '30%'}}>
             {/* First Name */}

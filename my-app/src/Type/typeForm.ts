@@ -59,5 +59,4 @@ export type Contact = {
     bankDetails?: BankDetails;
     creditCardDetails?: CreditCardDetails;
     agreement?: Agreement;
-    reCaptcha : string
   };
