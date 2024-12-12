@@ -4,8 +4,8 @@ import Input from '@mui/material/Input';
 import { FormLabel, FormControlLabel, RadioGroup, Radio, MenuItem, InputLabel, Button } from '@mui/material';
 import './formPremium.css'; // Import file CSS
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { createProfile } from '../Service/serviceApi';
-import { ApplicationForm, CentreDetails, Contact } from '../Type/typeForm';
+import { createProfile } from '../Service/serviceApi.ts';
+import { ApplicationForm, CentreDetails, Contact } from '../Type/typeForm.ts';
 import { useMutation } from 'react-query';
 
 function FormPremium() {
@@ -88,7 +88,8 @@ function FormPremium() {
         }
         const applicationForm : ApplicationForm = {
             primaryContact : primaryContact,
-            centreDetails : centreDetails
+            centreDetails : [centreDetails],
+            reCaptcha : "123456789"
         }
         mutation.mutate(applicationForm)
 

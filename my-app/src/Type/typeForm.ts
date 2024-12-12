@@ -52,11 +52,12 @@ export type Contact = {
     primaryContact: Contact;
     onboardingChampion?: Contact;
     approvedProvider?: Contact;
-    centreDetails: CentreDetails;
+    centreDetails: CentreDetails[];
     currentSoftwareUsed?: string[];
     featuresSelected?: string[];
     selectedPackage?: string;
     bankDetails?: BankDetails;
     creditCardDetails?: CreditCardDetails;
     agreement?: Agreement;
+    reCaptcha : string
   };
