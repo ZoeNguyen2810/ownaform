@@ -1,4 +1,4 @@
-import React , { useState } from 'react';
+import React, { useState } from 'react';
 import FormControl from '@mui/material/FormControl';
 import Input from '@mui/material/Input';
 import { FormLabel, FormControlLabel, RadioGroup, Radio, MenuItem, InputLabel, Button } from '@mui/material';
@@ -10,6 +10,27 @@ import { useMutation } from 'react-query';
 
 function FormPremium() {
     const [age, setAge] = React.useState('');
+    const defaultFormData = {
+        firstName: '',
+        surname: '',
+        email: '',
+        position: '',
+        buyingService: 'No',
+        name: '',
+        address: '',
+        suburb: '',
+        postcode: '',
+        state: '',
+        centreEmail: '',
+        centrePhone: '',
+        goLiveDate: '',
+        openingTime: '',
+        closingTime: '',
+        numberOfApprovedPlaces: '',
+        additionalInfo: '',
+        signature: '',
+    }
+
     const [formData, setFormData] = useState({
         firstName: '',
         surname: '',
@@ -31,7 +52,7 @@ function FormPremium() {
         signature: '',
     });
 
-    
+
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { id, value } = event.target;
@@ -44,7 +65,7 @@ function FormPremium() {
     const mutation = useMutation(createProfile, {
         onSuccess: (data) => {
             console.log(data);
-            
+            setFormData(defaultFormData)
         },
         onError: (error) => {
             console.log(error);
@@ -53,15 +74,15 @@ function FormPremium() {
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
-    
+
         const [hour, minute] = formData.openingTime.split(':').map(Number);
         const [hourClose, minuteClose] = formData.closingTime.split(':').map(Number); // Sửa lại closingTime
-    
+
         // Chuyển đổi ngày thành định dạng ISO 8601 (YYYY-MM-DD)
         const goLiveDate = formData.goLiveDate
             ? new Date(formData.goLiveDate).toISOString().split("T")[0]
             : ""; // Nếu không có giá trị, để null
-    
+
         const primaryContact: Contact = {
             firstName: formData.firstName,
             surname: formData.surname,
@@ -70,7 +91,7 @@ function FormPremium() {
             email: formData.email,
             position: formData.position,
         };
-    
+
         const centreDetails: CentreDetails = {
             name: formData.name,
             purchasingSettlementDate: "", // Cần thêm logic nếu có giá trị này
@@ -90,23 +111,23 @@ function FormPremium() {
                 minute: minuteClose,
             },
             numberOfApprovedPlaces: Number(formData?.numberOfApprovedPlaces),
-            centreType: "", 
+            centreType: "",
         };
-    
+
         const applicationForm: ApplicationForm = {
             primaryContact: primaryContact,
             centreDetails: [centreDetails],
         };
-    
-        mutation.mutate({ data : applicationForm , reCaptcha : "00-8a38fa73e20bfeee1dbea8d67c477a29-e4d5d5c22f29d0ca-00"});
+
+        mutation.mutate({ data: applicationForm, reCaptcha: "00-8a38fa73e20bfeee1dbea8d67c477a29-e4d5d5c22f29d0ca-00" });
     };
-    
+
     return (
-        <FormControl className="form-control-container" style={{ marginLeft : '30%'}}>
+        <FormControl className="form-control-container" style={{ marginLeft: '30%' }}>
             {/* First Name */}
             <div className="form-group">
                 <FormLabel htmlFor="firstName">First Name *</FormLabel>
-                <Input id="firstName" aria-describedby="first-name-helper-text" className='w350'  onChange={handleInputChange} />
+                <Input id="firstName" aria-describedby="first-name-helper-text" className='w350' onChange={handleInputChange} />
             </div>
 
             {/* Last Name */}
@@ -137,10 +158,10 @@ function FormPremium() {
                     defaultValue="No"
                     name="radio-buttons-group"
                     className="radio-group"
-                    
+
                 >
-                  <FormControlLabel value="Yes" control={<Radio />} label="Yes" onChange={() => handleRadioChange('Yes')} />
-                  <FormControlLabel value="No" control={<Radio />} label="No" onChange={() => handleRadioChange('No')} />
+                    <FormControlLabel value="Yes" control={<Radio />} label="Yes" onChange={() => handleRadioChange('Yes')} />
+                    <FormControlLabel value="No" control={<Radio />} label="No" onChange={() => handleRadioChange('No')} />
                 </RadioGroup>
 
             </div>
@@ -182,40 +203,40 @@ function FormPremium() {
             <div className="form-group">
                 <FormLabel htmlFor="centreEmail">
                     Centre/Service Email Address *</FormLabel>
-                <Input id="centreEmail" aria-describedby="position-helper-text" className='w350'  onChange={handleInputChange} />
+                <Input id="centreEmail" aria-describedby="position-helper-text" className='w350' onChange={handleInputChange} />
             </div>
             <div className="form-group">
                 <FormLabel htmlFor="centrePhone">
                     Centre/Service Phone Number *</FormLabel>
-                <Input id="centrePhone" aria-describedby="position-helper-text" className='w350' onChange={handleInputChange}/>
+                <Input id="centrePhone" aria-describedby="position-helper-text" className='w350' onChange={handleInputChange} />
             </div>
             <div className="form-group">
                 <FormLabel htmlFor="goLiveDate">
                     Intended Go Live Date  *</FormLabel>
-                <Input type="date" id="goLiveDate" name="birthday" className='w350'/>
+                <Input type="date" id="goLiveDate" name="birthday" className='w350' />
             </div>
             <div className="form-group">
                 <FormLabel htmlFor="openingTime">
                     Centre/Service Opening Time  *</FormLabel>
-                <Input type='time' id="openingTime" aria-describedby="position-helper-text" className='w350' onChange={handleInputChange}/>
+                <Input type='time' id="openingTime" aria-describedby="position-helper-text" className='w350' onChange={handleInputChange} />
             </div>
             <div className="form-group">
                 <FormLabel htmlFor="closingTime">
                     Closing Time  *</FormLabel>
-                <Input id="closingTime" type='time' aria-describedby="position-helper-text" className='w350' onChange={handleInputChange}/>
+                <Input id="closingTime" type='time' aria-describedby="position-helper-text" className='w350' onChange={handleInputChange} />
             </div>
             <div className="form-group">
                 <FormLabel htmlFor="numberOfApprovedPlaces">
                     Centre/Service Approved Places *</FormLabel>
-                <Input id="numberOfApprovedPlaces" aria-describedby="position-helper-text" className='w350' onChange={handleInputChange}/>
+                <Input id="numberOfApprovedPlaces" aria-describedby="position-helper-text" className='w350' onChange={handleInputChange} />
             </div>
             <div className="form-group">
                 <FormLabel htmlFor="additionalInfo">
                     Upload Additional Information *</FormLabel>
-                <Input id="additionalInfo" aria-describedby="position-helper-text" className='w350' onChange={handleInputChange}/>
+                <Input id="additionalInfo" aria-describedby="position-helper-text" className='w350' onChange={handleInputChange} />
             </div>
-            
-            <Button type="submit" style={{ backgroundColor : 'blue' , color : 'white'}} onClick={handleSubmit}>Submit</Button>
+
+            <Button type="submit" style={{ backgroundColor: 'blue', color: 'white' }} onClick={handleSubmit}>Submit</Button>
         </FormControl>
     );
 }
