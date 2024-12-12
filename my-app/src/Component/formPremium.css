@@ -61,3 +61,7 @@ label+.css-5h82ro-MuiInputBase-root-MuiInput-root {
   width: 150px !important;
   margin-left: 40% !important;
 }
+
+.css-w76bbz-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.MuiSelect-select {
+  width: 300px;
+}
