@@ -1,22 +1,21 @@
 .form-control-container {
   display: flex;
   flex-direction: column;
-  gap: 16px; /* Khoảng cách giữa các nhóm */
-  max-width: 600px; /* Đặt chiều rộng tối đa của form */
-  /* margin: 0 auto; Căn giữa form theo chiều ngang */
-  padding: 20px; /* Khoảng cách xung quanh form */
+  gap: 16px; 
+  max-width: 600px; 
+  padding: 20px; 
 }
 
 .form-group {
   display: flex;
   align-items: center;
 
-  gap: 8px; /* Khoảng cách giữa label và input */
+  gap: 8px; 
 }
 
 .form-group label {
-  width: 150px; /* Cố định độ rộng để các label thẳng hàng */
-  text-align: right; /* Căn label sang phải */
+  width: 150px;
+  text-align: right; 
 }
 
 .radio-group {
@@ -25,5 +24,5 @@
   margin-top: 8px;
 }
 .w350 {
-  width: 350px; /* Cố đ��nh đ�� rộng của các input */
+  width: 350px; 
 }
