@@ -50,13 +50,13 @@ export type Contact = {
   
   export type ApplicationForm = {
     primaryContact: Contact;
-    onboardingChampion: Contact;
-    approvedProvider: Contact;
-    centreDetails: CentreDetails[];
-    currentSoftwareUsed: string[];
-    featuresSelected: string[];
-    selectedPackage: string;
-    bankDetails: BankDetails;
-    creditCardDetails: CreditCardDetails;
-    agreement: Agreement;
+    onboardingChampion?: Contact;
+    approvedProvider?: Contact;
+    centreDetails: CentreDetails;
+    currentSoftwareUsed?: string[];
+    featuresSelected?: string[];
+    selectedPackage?: string;
+    bankDetails?: BankDetails;
+    creditCardDetails?: CreditCardDetails;
+    agreement?: Agreement;
   };

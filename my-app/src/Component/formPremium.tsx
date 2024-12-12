@@ -5,6 +5,8 @@ import { FormLabel, FormControlLabel, RadioGroup, Radio, MenuItem, InputLabel, B
 import './formPremium.css'; // Import file CSS
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { createProfile } from '../Service/serviceApi';
+import { ApplicationForm, CentreDetails, Contact } from '../Type/typeForm';
+import { useMutation } from 'react-query';
 
 function FormPremium() {
     const [age, setAge] = React.useState('');
@@ -39,26 +41,58 @@ function FormPremium() {
     const handleRadioChange = (value: string) => {
         setFormData((prevData) => ({ ...prevData, buyingService: value }));
     };
+    const mutation = useMutation(createProfile, {
+        onSuccess: (data) => {
+            console.log(data);
+            
+        },
+        onError: (error) => {
+            console.log(error);
+        }
+    });
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
+        const [hour, minute] = formData.openingTime.split(':').map(Number);
+        const [hourClose, minuteClose] = formData.openingTime.split(':').map(Number);
 
-        // Check for required fields
-        // const requiredFields = [
-        //     'firstName', 'email', 'position', 'name', 'address', 'suburb', 
-        //     'postcode', 'state', 'centreEmail', 'centrePhone', 'goLiveDate', 
-        //     'openingTime', 'closingTime', 'numberOfApprovedPlaces', 'additionalInfo', 'signature'
-        // ];
+        
+        const primaryContact : Contact = {
+            firstName : formData.firstName,
+            surname : formData.surname,
+            phone : "",
+            mobile : "",
+            email : formData.email,
+            position : formData.position
+        }
+        const centreDetails : CentreDetails = {
+            name : formData.name,
+            purchasingSettlementDate : "",
+            address : formData.address,
+            suburb : formData.suburb,
+            email : formData.centreEmail,
+            phone : formData.centrePhone,
+            state : formData.state,
+            postcode : formData.postcode,
+            goLiveDate : formData.goLiveDate,
+            openingTime : {
+                hour : hour,
+                minute : minute
+            },
+            closingTime : {
+                hour : hourClose,
+                minute : minuteClose
+            },
+            numberOfApprovedPlaces : Number(formData?.numberOfApprovedPlaces),
+            centreType : "",
+        }
+        const applicationForm : ApplicationForm = {
+            primaryContact : primaryContact,
+            centreDetails : centreDetails
+        }
+        mutation.mutate(applicationForm)
 
-        // for (const field of requiredFields) {
-        //     if (!formData[field]) {
-        //         alert(`Please fill in the required field: ${field.replace(/([A-Z])/g, ' $1').toUpperCase()}`);
-        //         return;
-        //     }
-        // }
 
-        // If validation passes, submit the form
-        console.log('Zoe Form submitted with data:', formData);
     };
     return (
         <FormControl className="form-control-container" style={{ marginLeft : '30%'}}>
