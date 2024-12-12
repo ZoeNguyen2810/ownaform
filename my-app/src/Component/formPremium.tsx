@@ -9,12 +9,12 @@ function FormPremium() {
     const [age, setAge] = React.useState('');
     const [formData, setFormData] = useState({
         firstName: '',
-        lastName: '',
+        surname: '',
         email: '',
         position: '',
         buyingService: 'No',
-        centreName: '',
-        centreAddress: '',
+        name: '',
+        address: '',
         suburb: '',
         postcode: '',
         state: '',
@@ -23,7 +23,7 @@ function FormPremium() {
         goLiveDate: '',
         openingTime: '',
         closingTime: '',
-        approvedPlaces: '',
+        numberOfApprovedPlaces: '',
         additionalInfo: '',
         signature: '',
     });
@@ -44,9 +44,9 @@ function FormPremium() {
 
         // Check for required fields
         // const requiredFields = [
-        //     'firstName', 'email', 'position', 'centreName', 'centreAddress', 'suburb', 
+        //     'firstName', 'email', 'position', 'name', 'address', 'suburb', 
         //     'postcode', 'state', 'centreEmail', 'centrePhone', 'goLiveDate', 
-        //     'openingTime', 'closingTime', 'approvedPlaces', 'additionalInfo', 'signature'
+        //     'openingTime', 'closingTime', 'numberOfApprovedPlaces', 'additionalInfo', 'signature'
         // ];
 
         // for (const field of requiredFields) {
@@ -60,7 +60,7 @@ function FormPremium() {
         console.log('Zoe Form submitted with data:', formData);
     };
     return (
-        <FormControl className="form-control-container" style={{ marginLeft : '40%'}}>
+        <FormControl className="form-control-container" style={{ marginLeft : '30%'}}>
             {/* First Name */}
             <div className="form-group">
                 <FormLabel htmlFor="firstName">First Name *</FormLabel>
@@ -69,8 +69,8 @@ function FormPremium() {
 
             {/* Last Name */}
             <div className="form-group">
-                <FormLabel htmlFor="lastName">Last Name</FormLabel>
-                <Input id="lastName" aria-describedby="last-name-helper-text" className='w350' onChange={handleInputChange} />
+                <FormLabel htmlFor="surname">Last Name</FormLabel>
+                <Input id="surname" aria-describedby="last-name-helper-text" className='w350' onChange={handleInputChange} />
             </div>
 
             {/* Email */}
@@ -103,12 +103,12 @@ function FormPremium() {
 
             </div>
             <div className="form-group">
-                <FormLabel htmlFor="centreName">Centre/Service Name * </FormLabel>
-                <Input id="centreName" aria-describedby="position-helper-text" className='w350' onChange={handleInputChange} />
+                <FormLabel htmlFor="name">Centre/Service Name * </FormLabel>
+                <Input id="name" aria-describedby="position-helper-text" className='w350' onChange={handleInputChange} />
             </div>
             <div className="form-group">
-                <FormLabel htmlFor="centreAddress">Centre/Service Physical Address *</FormLabel>
-                <Input id="centreAddress" aria-describedby="position-helper-text" className='w350' onChange={handleInputChange} />
+                <FormLabel htmlFor="address">Centre/Service Physical Address *</FormLabel>
+                <Input id="address" aria-describedby="position-helper-text" className='w350' onChange={handleInputChange} />
             </div>
 
             <div className="form-group">
@@ -163,20 +163,16 @@ function FormPremium() {
                 <Input id="closingTime" type='time' aria-describedby="position-helper-text" className='w350' onChange={handleInputChange}/>
             </div>
             <div className="form-group">
-                <FormLabel htmlFor="approvedPlaces">
+                <FormLabel htmlFor="numberOfApprovedPlaces">
                     Centre/Service Approved Places *</FormLabel>
-                <Input id="approvedPlaces" aria-describedby="position-helper-text" className='w350' onChange={handleInputChange}/>
+                <Input id="numberOfApprovedPlaces" aria-describedby="position-helper-text" className='w350' onChange={handleInputChange}/>
             </div>
             <div className="form-group">
                 <FormLabel htmlFor="additionalInfo">
                     Upload Additional Information *</FormLabel>
                 <Input id="additionalInfo" aria-describedby="position-helper-text" className='w350' onChange={handleInputChange}/>
             </div>
-            <div className="form-group">
-                <FormLabel htmlFor="signature">
-                    Your Signature* *</FormLabel>
-                <Input id="signature" aria-describedby="position-helper-text"  onChange={handleInputChange}/>
-            </div>
+            
             <Button type="submit" style={{ backgroundColor : 'blue' , color : 'white'}} onClick={handleSubmit}>Submit</Button>
         </FormControl>
     );
